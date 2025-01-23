@@ -1,0 +1,68 @@
+[
+    {
+        "task": "comment_generation",
+        "input": {
+            "post_text": "...post text...",
+            "post_reactions": {
+                "hate": 7,
+                "like": 83,
+                "love": 16,
+                "impressive": 8,
+                "angry emoji": 2758,
+                "clown emoji": 31,
+                "laughing emoji": 585,
+                "enjoyment emoji": 41
+            }
+        },
+        "output": {
+            "comment_position": 103,
+            "comment_reactions": {},
+            "comment_text": "...coment text..."
+        }
+    },
+    {
+        "task": "reply_generation",
+        "input": {
+            "post_text": "...post text...",
+            "post_reactions": {
+                "hate": 7,
+                "like": 83,
+                "love": 16,
+                "impressive": 8,
+                "angry emoji": 2758,
+                "clown emoji": 31,
+                "laughing emoji": 585,
+                "enjoyment emoji": 41
+            },
+            "username": "username_1 (usertag_1)",
+            "comment_to_reply": "...comment to reply...",
+            "comment_to_reply_reactions": {},
+            "previous_reply_history": [
+                {
+                    "username": "username_2 (usertag_2)",
+                    "comment_text": "...comment text...",
+                    "comment_reactions": {},
+                    "previous_replies": [
+                        {
+                            "username": "username_1 (usertag_1)",
+                            "comment_text": "...comment text...",
+                            "comment_reactions": {},
+                            "previous_replies": [
+                                {
+                                    "username": "username_2 (usertag_2)",
+                                    "comment_text": "...comment text...",
+                                    "comment_reactions": {},
+                                    "previous_replies": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "output": {
+            "reply_text_reactions": {},
+            "reply_text": "...reply text..."
+        }
+    }
+]
