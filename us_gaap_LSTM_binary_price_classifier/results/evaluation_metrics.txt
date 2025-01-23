@@ -1,0 +1,28 @@
+# Model: LSTMClassifier
+# Dataset: financial statements dataset with stock price movements
+
+## Metrics
+- Accuracy: 
+  - Class 1: 0.8855
+  - Class 2: 0.9046
+  - Class 3: 0.9060
+  - Class 4: 0.8988
+  - Class 5: 0.9082
+- Precision: 
+  - Class 1: 0.6170
+  - Class 2: 0.6952
+  - Class 3: 0.7356
+  - Class 4: 0.7018
+  - Class 5: 0.7166
+- Recall: 
+  - Class 1: 0.6054
+  - Class 2: 0.6368
+  - Class 3: 0.6448
+  - Class 4: 0.6183
+  - Class 5: 0.6855
+- F1 Score: 
+  - Class 1: 0.6111
+  - Class 2: 0.6647
+  - Class 3: 0.6872
+  - Class 4: 0.6574
+  - Class 5: 0.7007
