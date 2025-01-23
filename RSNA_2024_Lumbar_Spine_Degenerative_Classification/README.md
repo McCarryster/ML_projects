@@ -1,0 +1,1 @@
+This is a lazy project to classify the severity of spine diagnoses
