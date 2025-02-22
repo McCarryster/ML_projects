@@ -1,4 +1,11 @@
 .venv/
+.uvenv/
 __pycache__/
-ready_data.json
+my_account.session
+json_data.json
+head_data.json
 raw_data/
+other/
+models/
+model_res_1/
+2_collect_to_sql.py

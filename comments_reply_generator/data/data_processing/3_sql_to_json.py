@@ -1,6 +1,7 @@
 import psycopg2
 from psycopg2 import OperationalError
 import json
+import os
 from login import *
 
 class SQL_to_json:
@@ -92,24 +93,27 @@ db = SQL_to_json(**db_params)
 data = []
 posts = db.get_posts()
 for post in posts:
+    print(f'Processing {post[0]}...')
+
     if not db.check_post_id_exists(post[0], 'COMMENTS'):     # Check if post_id exists in comments table
         continue
-
     comments = db.get_comments_for_post(post[0])
     for comment in comments:
         if not db.check_post_id_exists(post[0], 'POSTS'):    # Check if post_id exists in posts table
             continue
-        print(f'Processing {comment[2]}...')
+
         # comment_generation
         if comment[1] is None:
             data.append(
                 {
-                    "task": "comment_generation",
-                    "input": {"post_text": post[1],
-                              "post_reactions": post[2]},
-                    "output": {"comment_position": comment[7],
-                               "comment_reactions": comment[6],
-                               "comment_text": comment[5]}
+                    "input": {
+                        "task": "comment_generation",
+                        "post": post[1],
+                        "post_reactions": post[2],
+                        "position": comment[7],
+                        "desired_reactions": comment[6]
+                    },
+                    "output": comment[5]
                 }
             )
         # comment_generation
@@ -122,52 +126,41 @@ for post in posts:
             else:
                 continue
             curr_reply_to_comment_id = input_up_comment_data[1]
-            reply_history_stack = []
+            reply_history = []
             while curr_reply_to_comment_id is not None:
                 if not db.check_comment_exists(curr_reply_to_comment_id): # Check if comment_id exists in comments table
                     break
                 reply = db.get_one_comment(curr_reply_to_comment_id)[0]
                 if not reply:
                     break
-                if not reply_history_stack:
-                    reply_history_stack.append(
-                        {
-                            "username": reply[4],
-                            "comment_text": reply[5],
-                            "comment_reactions": reply[6],
-                            "previous_replies": []
-                        }
-                    )
-                else:
-                    reply_history_stack.append(
-                        {
-                            "username": reply[4],
-                            "comment_text": reply[5],
-                            "comment_reactions": reply[6],
-                            "previous_replies": [reply_history_stack.pop()]
-                        }
-                    )
+                reply_history.append(
+                    {
+                        "username": reply[4],
+                        "comment": reply[5],
+                        "reactions": reply[6],
+                    }
+                )
                 curr_reply_to_comment_id = reply[1]
             data.append(
                 {
-                    "task": "reply_generation",
                     "input": {
-                        "post_text": post[1],
+                        "task": "reply_generation",
+                        "post": post[1],
                         "post_reactions": post[2],
                         "username": input_up_comment_data[4],
                         "comment_to_reply": input_up_comment_data[5],
-                        "comment_to_reply_reactions": input_up_comment_data[6],
-                        "previous_reply_history": reply_history_stack
+                        "comment_reactions": input_up_comment_data[6],
+                        "history": reply_history[::-1],
+                        "desired_reactions": comment[6]
                     },
-                    "output": {
-                        "reply_text_reactions": comment[6],
-                        "reply_text": comment[5]
-                    }
+                    "output": comment[5]
                 }
             )
         # reply_generation
 db.close()
 
-with open('data/example_data.json', 'w') as f:
+script_dir = os.path.dirname(__file__)
+output_dir = os.path.join(script_dir, '../data_types/processed_data/json_data.json')
+with open(output_dir, 'w', encoding='utf-8') as f:
     json.dump(data, f, indent=4)
-print(f'Data stored successfully!')
+print(f'Data stored successfully!') 

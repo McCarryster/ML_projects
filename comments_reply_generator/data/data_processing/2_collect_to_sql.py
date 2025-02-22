@@ -39,9 +39,9 @@ class TGtoSQL:
         self.close()
 
     def emoji_handler(self, content_reactions: list):
-        map_reactions = {"👍":"like", "👎":"dislike", "❤":"love", "🤔":"thinking emoji", "😢":"crying emoji", 
-                        "😁":"enjoyment emoji", "🤣":"laughing emoji", "🍾":"champagne emoji",
-                        "😡":"angry emoji", "🙏":"pray", "🔥":"impressive", "🤡":"clown emoji", "🤮":"vomit emoji",
+        map_reactions = {"👍":"like", "👎":"dislike", "❤":"love", "🤔":"think", "😢":"cry", 
+                        "😁":"enjoy", "🤣":"laugh", "🍾":"champagne",
+                        "😡":"angry", "🙏":"pray", "🔥":"impressive", "🤡":"clown", "🤮":"vomit",
                         "🖕":"hate", "💩": "poop"}
         res_reactions = {}
         for reaction in content_reactions:
@@ -172,7 +172,7 @@ class TGtoSQL:
 
 db = TGtoSQL(**db_params)
 def fetch_data(chat_id: int):
-    for message in app.get_chat_history(chat_id=chat_id, limit=5_000_000):
+    for message in app.get_chat_history(chat_id=chat_id, limit=6_000_000):
         text = message.text or message.caption
         if text is not None:
             if message.sender_chat:
