@@ -1,0 +1,5 @@
+# Model: CNNModel
+# Dataset: Kaggle spine scans
+
+## Metrics
+- Accuracy: 0.8967
