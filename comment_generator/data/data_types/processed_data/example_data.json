@@ -1,0 +1,71 @@
+[
+    {
+        "input": {
+            "task": "comment_generation",
+            "post": "...post text (on Russian)...",
+            "post_reactions": {
+                "cry": 811,
+                "like": 94,
+                "love": 13,
+                "angry": 70,
+                "clown": 32,
+                "enjoy": 38,
+                "laugh": 1309,
+                "think": 12,
+                "impressive": 9
+            },
+            "position": 67,
+            "desired_reactions": {}
+        },
+        "output": "...comment text (on Russian)..."
+    },
+    {
+        "input": {
+            "task": "reply_generation",
+            "post": "...post text (on Russian)...",
+            "post_reactions": {
+                "cry": 811,
+                "like": 94,
+                "love": 13,
+                "angry": 70,
+                "clown": 32,
+                "enjoy": 38,
+                "laugh": 1309,
+                "think": 12,
+                "impressive": 9
+            },
+            "username": "username1",
+            "comment_to_reply": "...comment to reply (on Russian)...",
+            "comment_reactions": {},
+            "history": [
+                {
+                    "username": "username1",
+                    "comment": "...comment text (on Russian)...",
+                    "reactions": {
+                        "clown": 2,
+                        "laugh": 11
+                    }
+                },
+                {
+                    "username": "username2",
+                    "comment": "...comment text (on Russian)...",
+                    "reactions": {}
+                },
+                {
+                    "username": "username1",
+                    "comment": "...comment text (on Russian)...",
+                    "reactions": {}
+                },
+                {
+                    "username": "username2",
+                    "comment": "...comment text (on Russian)...",
+                    "reactions": {}
+                }
+            ],
+            "desired_reactions": {
+                "laugh": 2
+            }
+        },
+        "output": "...reply text (on Russian)..."
+    }
+]

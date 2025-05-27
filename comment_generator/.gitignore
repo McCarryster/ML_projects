@@ -1,0 +1,22 @@
+.venv/
+.uvenv/
+__pycache__/
+my_account.session
+other/
+
+# Data
+comment_and_reply/
+commeny_only/
+filtered/
+head_data.json
+raw_data/
+
+# Models
+fine_tuned_models/
+models/
+
+# Notebooks
+notebooks/check_data.ipynb
+
+# Scripts
+testing/
