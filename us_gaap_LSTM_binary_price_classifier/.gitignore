@@ -2,4 +2,3 @@
 __pycache__/
 data_types/
 fin_data_preparation_clean_pyspark.py
-notebooks/

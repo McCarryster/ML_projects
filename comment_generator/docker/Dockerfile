@@ -1,5 +1,5 @@
 # Use an official PyTorch image with CUDA 11.8 support
-FROM pytorch/pytorch:2.5.1-cuda11.8-cudnn9-runtime  
+FROM pytorch/pytorch:2.5.1-cuda11.8-cudnn9-runtime
 
 # Set working directory
 WORKDIR /app
