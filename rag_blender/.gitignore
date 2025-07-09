@@ -1,0 +1,8 @@
+.venv/
+.uvenv/
+__pycache__/
+other/
+
+data_types/
+
+testing/
